@@ -1,10 +1,9 @@
-#!/bin/bash
-
 #!/bin/sh
 
+JWS_HOME=$(cd $(dirname $0);pwd)
+
 export LANG="zh_CN.UTF-8"
-# export PATH=/usr/local/mono/bin:$PATH
-# export LD_LIBRARY_PATH=/usr/local/mono/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=${JWS_HOME}/runtime/lib:$LD_LIBRARY_PATH
 
 # export MONO_IOMAP="all"
 # export MONO_MANAGED_WATCHER="disable"
@@ -15,10 +14,6 @@ export LANG="zh_CN.UTF-8"
 export MONO_ASPNET_WEBCONFIG_CACHESIZE=8192
 export MONO_THREADS_PER_CPU=2000
 
-export MONO_ENV_OPTIONS="--runtime=v4.0.30319"
-
-
 ulimit -SHn 20000 >/dev/null 2>&1
-ulimit -c 0 >/dev/null 2>&1
 
-mono /usr/jexus/jws.exe
+/usr/jexus/jwss
