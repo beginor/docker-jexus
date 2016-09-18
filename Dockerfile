@@ -1,33 +1,31 @@
-FROM ubuntu:16.04
+FROM beginor/mono:latest
 
 MAINTAINER beginor <beginor@qq.com>
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
-    && echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee /etc/apt/sources.list.d/mono-xamarin.list \
-    && apt-get update \
-    && apt-get install -y mono-devel ca-certificates-mono referenceassemblies-pcl wget openssh-server
-
-RUN wget http://linuxdot.net/down/jexus-5.8.1.tar.gz \
+# Install wget and openssh-server, download and install jexus, then cleanup
+RUN apt-get update \
+    && apt-get install -y wget openssh-server \
+    && wget http://linuxdot.net/down/jexus-5.8.1.tar.gz \
     && tar -zxf jexus-5.8.1.tar.gz \
     && jexus-5.8.1/install \
     && rm -rf jexus-5.8.1 \
-    && rm jexus-5.8.1.tar.gz
-
-RUN apt-get remove -y wget \
+    && rm jexus-5.8.1.tar.gz \
+    && apt-get remove -y wget \
     && apt-get purge -y wget \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get autoremove \
+    && mkdir -p /var/run/sshd \
+    && mkdir -p /var/www/default
 
-RUN mkdir -p /var/run/sshd
-
-RUN mkdir -p /var/www/default \
-    && echo '<% Response.Write("Hello, world!"); %>' > /var/www/default/index.aspx
-
+# Add startup script and make it executable
 ADD start-jexus.sh /start-jexus.sh
-
 RUN chmod a+x /start-jexus.sh
 
+# Expost ports
 EXPOSE 443 80 22
 
+# Define volumes
 VOLUME ["/usr/jexus/siteconf", "/var/www", "/usr/jexus/log"]
 
+# Define startup scripts;
 CMD ["/start-jexus.sh"]
