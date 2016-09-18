@@ -13,7 +13,7 @@ RUN apt-get update \
     && apt-get remove -y wget \
     && apt-get purge -y wget \
     && rm -rf /var/lib/apt/lists/* \
-    && apt-get autoremove \
+    && apt-get autoremove -y \
     && mkdir -p /var/run/sshd \
     && mkdir -p /var/www/default
 
