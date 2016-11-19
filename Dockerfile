@@ -1,15 +1,15 @@
-FROM beginor/mono:latest
+FROM beginor/mono:4.6.2
 
 MAINTAINER beginor <beginor@qq.com>
 
 # Install wget and openssh-server, download and install jexus, then cleanup
 RUN apt-get update \
     && apt-get install -y wget openssh-server \
-    && wget http://linuxdot.net/down/jexus-5.8.1.tar.gz \
-    && tar -zxf jexus-5.8.1.tar.gz \
-    && jexus-5.8.1/install \
-    && rm -rf jexus-5.8.1 \
-    && rm jexus-5.8.1.tar.gz \
+    && wget http://linuxdot.net/down/jexus-5.8.2.tar.gz \
+    && tar -zxf jexus-5.8.2.tar.gz \
+    && jexus-5.8.2/install \
+    && rm -rf jexus-5.8.2 \
+    && rm jexus-5.8.2.tar.gz \
     && apt-get remove -y wget \
     && apt-get purge -y wget \
     && rm -rf /var/lib/apt/lists/* \

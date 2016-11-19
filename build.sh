@@ -1,2 +1,2 @@
-#!/bin/sh
-docker build -t beginor/jexus:5.8.1 . 
+#!/bin/bash
+docker build -t beginor/jexus:5.8.2 . 
