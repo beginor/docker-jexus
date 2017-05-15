@@ -1,10 +1,10 @@
-FROM beginor/mono:4.6.2
+FROM beginor/mono:5.0.0
 
 MAINTAINER beginor <beginor@qq.com>
 
-# Install wget and openssh-server, download and install jexus, then cleanup
+# Install wget download and install jexus, then cleanup
 RUN apt-get update \
-    && apt-get install -y wget openssh-server \
+    && apt-get install -y wget \
     && wget http://linuxdot.net/down/jexus-5.8.2.tar.gz \
     && tar -zxf jexus-5.8.2.tar.gz \
     && jexus-5.8.2/install \
@@ -14,7 +14,6 @@ RUN apt-get update \
     && apt-get purge -y wget \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoremove -y \
-    && mkdir -p /var/run/sshd \
     && mkdir -p /var/www/default
 
 # Add startup script and make it executable
@@ -23,6 +22,9 @@ RUN chmod a+x /start-jexus.sh
 
 # Expost ports
 EXPOSE 443 80 22
+
+# Define workdir
+WORKDIR /usr/jexus
 
 # Define volumes
 VOLUME ["/usr/jexus/siteconf", "/var/www", "/usr/jexus/log"]
