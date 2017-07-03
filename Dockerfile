@@ -1,4 +1,4 @@
-FROM beginor/mono:5.0.0
+FROM beginor/mono:5.0.1
 
 MAINTAINER beginor <beginor@qq.com>
 
@@ -17,17 +17,12 @@ RUN apt-get update \
     && mkdir -p /var/www/default
 
 # Add startup script and make it executable
-ADD start-jexus.sh /start-jexus.sh
-RUN chmod a+x /start-jexus.sh
-
+ADD bootstrap.sh /usr/bin/
 # Expost ports
-EXPOSE 443 80 22
-
-# Define workdir
-WORKDIR /usr/jexus
-
+EXPOSE 80 443
 # Define volumes
 VOLUME ["/usr/jexus/siteconf", "/var/www", "/usr/jexus/log"]
-
+# Define workdir
+WORKDIR /usr/jexus
 # Define startup scripts;
-CMD ["/start-jexus.sh"]
+ENTRYPOINT ["/usr/bin/bootstrap.sh"]
