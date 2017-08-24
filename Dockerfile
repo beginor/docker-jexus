@@ -15,8 +15,8 @@ RUN apt-get update \
     && rm jexus-5.8.2.tar.gz \
     && apt-get remove -y wget \
     && apt-get purge -y wget \
-    && rm -rf /var/lib/apt/lists/* \
     && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /var/www/default
 
 # Expost ports
