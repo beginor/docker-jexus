@@ -1,6 +1,9 @@
-FROM beginor/mono:5.0.1
+FROM beginor/mono:5.2.0
 
 MAINTAINER beginor <beginor@qq.com>
+
+# COPY startup script and make it executable
+COPY bootstrap.sh /usr/bin/
 
 # Install wget download and install jexus, then cleanup
 RUN apt-get update \
@@ -16,8 +19,6 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && mkdir -p /var/www/default
 
-# Add startup script and make it executable
-ADD bootstrap.sh /usr/bin/
 # Expost ports
 EXPOSE 80 443
 # Define volumes
