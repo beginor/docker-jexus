@@ -1,5 +1,6 @@
 # Jexus Web Server in docker
 
-Jexus web server in docker
+Version Info:
 
-Update for mono 5.0.0
+- Jexus/5.8.2.21 Linux
+- Mono JIT compiler version 5.2.0.215
