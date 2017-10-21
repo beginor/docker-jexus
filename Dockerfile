@@ -1,6 +1,6 @@
-FROM beginor/mono:5.2.0
+FROM beginor/mono:5.4.0
 
-MAINTAINER beginor <beginor@qq.com>
+LABEL MAINTAINER="beginor <beginor@qq.com>"
 
 # COPY startup script and make it executable
 COPY bootstrap.sh /usr/bin/

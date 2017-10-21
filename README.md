@@ -3,4 +3,4 @@
 Version Info:
 
 - Jexus/5.8.2.21 Linux
-- Mono JIT compiler version 5.2.0.215
+- Mono JIT compiler version 5.4.0.201
