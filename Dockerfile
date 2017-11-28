@@ -1,4 +1,4 @@
-FROM beginor/mono:5.4.0
+FROM beginor/mono:5.4.1.6
 
 LABEL MAINTAINER="beginor <beginor@qq.com>"
 

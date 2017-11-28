@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t beginor/jexus:5.8.2.21 . 
+docker build --no-cache -t beginor/jexus:5.8.2.21 . 
