@@ -3,7 +3,7 @@
 ## Version Info:
 
 - Jexus 5.8.3.0
-- Mono 5.10.0.140
+- Mono 5.8.1.0
 - Ubuntu 16.04 (TimeZone set to Asia/Shanghai)
 
 ## Usage:
