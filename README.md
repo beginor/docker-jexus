@@ -2,8 +2,8 @@
 
 ## Version Info:
 
-- Jexus 5.8.3.0
-- Mono 5.8.1.0
+- Jexus 5.8.3.9
+- Mono 5.10.1.47
 - Ubuntu 16.04 (TimeZone set to Asia/Shanghai)
 
 ## Usage:
@@ -11,7 +11,7 @@
 1. Get the image with command:
 
   ```sh
-  docker pull beginor/jexus:5.8.3.2
+  docker pull beginor/jexus:5.8.3.9
   ```
 
 2. Prepare the directors for volumes:
@@ -35,7 +35,7 @@
       --volume $(pwd)/jexus/www:/var/www \
       --volume $(pwd)/jexus/conf:/usr/jexus/siteconf \
       --volume $(pwd)/jexus/log:/usr/jexus/log \
-      beginor/jexus:5.8.3.2
+      beginor/jexus:5.8.3.9
   ```
 
 5. Then browse [http://127.0.0.1:9999/info](http://127.0.0.1:9999/info) with your faverite borwser, see what happens.
