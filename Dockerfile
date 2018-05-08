@@ -1,22 +1,13 @@
-FROM beginor/mono:5.8.1.0
+FROM beginor/mono:5.10.1.47
 
 LABEL MAINTAINER="beginor <beginor@qq.com>"
 
 # COPY startup script and make it executable
-COPY bootstrap.sh /usr/bin/
+COPY src/bootstrap.sh /usr/bin/
 
 # Install wget download and install jexus, then cleanup
-RUN apt-get update \
-    && apt-get install -y wget curl \
-    && wget https://linuxdot.net/down/jexus-5.8.3.tar.gz \
-    && tar -zxf jexus-5.8.3.tar.gz \
-    && jexus-5.8.3/install \
-    && rm -rf jexus-5.8.3 \
-    && rm jexus-5.8.3.tar.gz \
-    && apt-get remove -y wget \
-    && apt-get purge -y wget \
-    && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/*
+COPY src/install.sh /tmp/
+RUN /tmp/install.sh
 
 # Expost ports
 EXPOSE 80 443
